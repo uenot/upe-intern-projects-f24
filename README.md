@@ -1,1 +1,1 @@
-# upe-git-demo-f24
+# UPE Intern Projects F24
