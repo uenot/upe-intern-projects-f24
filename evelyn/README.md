@@ -1,21 +1,6 @@
 # UPE Intern Projects F24
 
-Home for the UPE Intern Projects for the Fall '24 intern class.
-
-## Structure
-
-This repo will contain everyone's projects, so projects should be in their own subfolders, e.g.
-
-```
-/ (root)
-|-- toby
-|    | -- index.html
-|    | -- src
-|    |    | -- toby_file_1.py
-|    |    | -- toby_file_2.py
-|-- you
-|    | -- (your project files in here!)
-```
+This is Evelyn's intern project!
 
 # Contributing
 
