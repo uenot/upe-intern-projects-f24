@@ -1,5 +1,4 @@
 # UPE Intern Projects F24
-# Anand
 
 Home for the UPE Intern Projects for the Fall '24 intern class.
 
