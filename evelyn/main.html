@@ -9,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             max-width: 600px;
-            margin: 20px auto;
+            margin: 20px;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -61,22 +61,18 @@
 <body>
 
     <h1>to do list</h1>
-
     <!-- adding tasks -->
     <div class="task-container">
-        <input type="text" id="task-title" placeholder="Add a new task">
+        <input type="text" id="task-title" placeholder="add a new task">
         <input type="date" id="task-deadline">
-        <button id="add-task-btn">Add Task</button>
+        <button id="add-task-btn">add</button>
     </div>
-
     <!-- search bar -->
     <div class="search-container">
-        <input type="text" id="search-task" placeholder="Search tasks...">
+        <input type="text" id="search-task" placeholder="search">
     </div>
-
     <!-- task list -->
     <ul id="task-list"></ul>
-
     <script src="app.js"></script>
 </body>
 
