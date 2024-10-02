@@ -1,12 +1,13 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import MoodButton from '../components/MoodButton';
 
 const Home = () => {
   return (
-    <div>
-      <Navbar></Navbar>
-      <div className='main-section'>
-        
+    <div className='main-section'>
+      <div className='button-panel'>
+        <MoodButton face={<i className="fa-regular fa-face-smile"></i>} />
+        <MoodButton face={<i className="fa-regular fa-face-frown"></i>} />
+        <MoodButton face={<i className="fa-regular fa-face-angry"></i>} />
       </div>
     </div>
   )
