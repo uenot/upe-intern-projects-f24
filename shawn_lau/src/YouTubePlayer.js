@@ -51,6 +51,21 @@ function YouTubePlayer() {
     }
   };
 
+  const a = () => {
+
+  }
+  const b = () => {
+    
+  }
+  const c = () => {
+    
+  }
+  const d = () => {
+    
+  }
+
+  var question = "what did the duck say when he walked up to the lemonade stand?";
+
   return (
     <div>
       <div id="player"></div>
@@ -63,6 +78,13 @@ function YouTubePlayer() {
         value={volume}
         onChange={handleVolumeChange}
       />
+      Question: {question}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+        <button onClick={a}>a</button>
+        <button onClick={b}>b</button>
+        <button onClick={c}>c</button>
+        <button onClick={d}>d</button>
+      </div>
     </div>
   );
 }
