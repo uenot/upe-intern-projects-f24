@@ -1,0 +1,42 @@
+/* Question.css */
+
+.question-container {
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Spacing inside the box */
+    margin: 16px; /* Spacing outside the box */
+    background-color: #F8F9FA; /* Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 300px; /* Set width */
+    height: 300px; /* Set height to match width for a square */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: space-between; /* Space out the question and options */
+}
+
+.question-text {
+    font-size: 1.5em; /* Larger font for the question */
+    font-weight: bold; /* Bold text for emphasis */
+    margin-bottom: 12px; /* Space between question and options */
+    flex-grow: 1; /* Allow question text to grow */
+}
+
+.option-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.option-item {
+    background-color: #E9ECEF; /* Light grey for options */
+    border: 1px solid #CED4DA; /* Grey border */
+    border-radius: 4px; /* Slightly rounded corners */
+    padding: 8px; /* Padding inside each option */
+    margin-bottom: 8px; /* Space between options */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.option-item:hover {
+    background-color: #007BFF; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
