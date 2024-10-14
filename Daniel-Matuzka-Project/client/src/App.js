@@ -11,11 +11,11 @@ const App = () => {
   const [songs, setSongs] = useState([]);
   const [currentMood, setCurrentMood] = useState('');
 
-  const queryClient = new QueryClient(); // Create a QueryClient instance
+  const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}> {/* Wrap with QueryClientProvider */}
-      <MoodContext.Provider value={{ songs, setSongs, currentMood, setCurrentMood }}> {/* Provide context */}
+    <QueryClientProvider client={queryClient}>
+      <MoodContext.Provider value={{ songs, setSongs, currentMood, setCurrentMood }}>
         <div className="App">
           <Navbar />
           <Home />

@@ -39,7 +39,7 @@ def get_recommendations():
         data = request.json
         mood = data['mood']
 
-        # Get valence and energy values for the given mood
+        # Get song attribute values for the given mood
         mood_attributes = {
             'happy': {'valence': 0.8, 'energy': 0.7, 'target_mode': 1, 'target_loudness': -8.0, 'target_acousticness': 0.3},
             'sad': {'valence': 0.2, 'energy': 0.3, 'target_mode': 0, 'target_loudness': -15.0, 'target_acousticness': 0.8},
@@ -57,8 +57,8 @@ def get_recommendations():
 
         try:
             recommendations = sp.recommendations(
-                seed_genres=['pop', 'rock', 'hip-hop', 'alternative', 'r-n-b'],  # Provide a default genre
-                limit=50,  # Fetch more songs to increase randomness
+                seed_genres=['pop', 'rock', 'hip-hop', 'alternative', 'r-n-b'], 
+                limit=50,
                 target_valence=attributes['valence'],
                 target_energy=attributes['energy'],
                 target_mode=attributes['target_mode'],
@@ -83,8 +83,8 @@ def get_recommendations():
             track_ids.add(track['id'])
             unique_songs.append(song_info)
 
-        # Ensure we only select 5 unique songs
-        random.shuffle(unique_songs)  # Shuffle to ensure randomness
+        # Select 5 random songs from the fetched list
+        random.shuffle(unique_songs)
         selected_songs = unique_songs[:5]
 
         return jsonify({'songs': selected_songs})
