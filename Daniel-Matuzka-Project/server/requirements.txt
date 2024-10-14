@@ -1,0 +1,6 @@
+flask
+spotipy
+flask_cors
+requests
+base64
+random
