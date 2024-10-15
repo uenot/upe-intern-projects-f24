@@ -1,4 +1,0 @@
-flask
-spotipy
-flask_cors
-requests
