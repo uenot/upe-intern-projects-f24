@@ -1,15 +1,18 @@
 from flask import Flask, request, jsonify
 import spotipy
 from flask_cors import CORS
+from dotenv import load_dotenv
 import requests
 import base64
 import random
+import os
 
+load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-CLIENT_ID = '52421b5b26f5475c9a5a1697daa59bf3'
-CLIENT_SECRET = 'f3f6952b56534cd6809b5fb416e75dd9'
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 
 def get_access_token():
     # Base64 encode the client ID and client secret
