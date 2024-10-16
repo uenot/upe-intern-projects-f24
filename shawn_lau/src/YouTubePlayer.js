@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Question from './Question';
 
 function YouTubePlayer({videoId, stopTimes}) { 
   const playerRef = useRef(null);
   const [volume, setVolume] = useState(50);
   const [currentTime, setCurrentTime] = useState(0);
+  
+  //question states
+  const [showQuestion, setShowQuestion] = useState(false); 
 
   useEffect(() => {
 
@@ -70,7 +74,8 @@ function YouTubePlayer({videoId, stopTimes}) {
     stopTimes.forEach((targetTime) => {
       if (Math.floor(time) === targetTime) {
         console.log(`Stopping at ${targetTime} seconds`);
-        stopVideo(); // Stop the video when the current time matches a target time
+        stopVideo(); 
+        setShowQuestion(true);
       }
     });
   };
@@ -96,6 +101,18 @@ function YouTubePlayer({videoId, stopTimes}) {
         onChange={handleVolumeChange}
       />
       <p>Current Time: {Math.floor(currentTime)} seconds</p>
+
+      {showQuestion && (
+        <div>
+          <Question
+            ques={"what the duck say!"}
+            opt={["op1", "op2", "op3", "op4"]}
+            ans={"op2"}
+          />
+          <button onClick={() => setShowQuestion(false)}>Close Question</button>
+        </div>
+      )}
+
     </div>
   );
 }
