@@ -8,14 +8,14 @@ function App() {
       <div>
         
         <h1>YouTube Player</h1>
-        <YouTubePlayer />
+        <YouTubePlayer videoId={'MtN1YnoL46Q'} stopTimes={[5,10]}/>
         
 
       </div>
 
       
       <div>
-        <Question ques={"Question: why"} opt={["options1", "options2", "options3", "options4"]} ans={"answer"} />
+        <Question ques={"Question: why"} opt={["options1", "options2", "options3", "options4"]} ans={"options1"} />
       </div>
 
     </div>

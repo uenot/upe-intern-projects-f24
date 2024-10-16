@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-function YouTubePlayer() {
-  const playerRef = useRef(null); // Ref to hold the player instance
-  const [volume, setVolume] = useState(50); // State to hold volume level
+function YouTubePlayer({videoId, stopTimes}) { 
+  const playerRef = useRef(null);
+  const [volume, setVolume] = useState(50);
+  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
-    // Load YouTube IFrame API
+
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -15,25 +16,38 @@ function YouTubePlayer() {
       playerRef.current = new window.YT.Player('player', {
         height: '390',
         width: '640',
-        videoId: 'MtN1YnoL46Q',
+        videoId: videoId,
         playerVars: {
           'playsinline': 1,
-          'controls': 0,            // Hide controls
-          'modestbranding': 1,      // Minimal branding
-          'showinfo': 0,            // Do not show video info
-          'rel': 0,                 // Do not show related videos at the end
-          'disablekb': 1,           // Disable keyboard controls
-          'fs': 0,                  // Hide fullscreen button
-          'iv_load_policy': 3       // Disable video annotations
+          'controls': 0,
+          'modestbranding': 1,
+          'showinfo': 0,
+          'rel': 0,
+          'disablekb': 1,
+          'fs': 0,
+          'iv_load_policy': 3
+        },
+        events: {
+          'onStateChange': onPlayerStateChange // Track video state changes
         }
       });
     };
+
+    const intervalId = setInterval(() => {
+      if (playerRef.current && playerRef.current.getCurrentTime) {
+        const time = playerRef.current.getCurrentTime();
+        setCurrentTime(time);
+        checkForTargetPoints(time);
+      }
+    }, 1000); // Check every second
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
 
   const startVideo = () => {
     if (playerRef.current) {
       playerRef.current.playVideo();
-      playerRef.current.setVolume(volume); // Set to the current volume state
+      playerRef.current.setVolume(volume);
     }
   };
 
@@ -47,10 +61,27 @@ function YouTubePlayer() {
     const newVolume = e.target.value;
     setVolume(newVolume);
     if (playerRef.current) {
-      playerRef.current.setVolume(newVolume); // Update the volume dynamically
+      playerRef.current.setVolume(newVolume);
     }
   };
 
+  const checkForTargetPoints = (time) => {
+    // Iterate through stopTimes array and check if we should stop
+    stopTimes.forEach((targetTime) => {
+      if (Math.floor(time) === targetTime) {
+        console.log(`Stopping at ${targetTime} seconds`);
+        stopVideo(); // Stop the video when the current time matches a target time
+      }
+    });
+  };
+
+  const onPlayerStateChange = (event) => {
+    if (event.data === window.YT.PlayerState.PLAYING) {
+      console.log('Video is playing');
+    } else if (event.data === window.YT.PlayerState.PAUSED) {
+      console.log('Video is paused');
+    }
+  };
 
   return (
     <div>
@@ -64,6 +95,7 @@ function YouTubePlayer() {
         value={volume}
         onChange={handleVolumeChange}
       />
+      <p>Current Time: {Math.floor(currentTime)} seconds</p>
     </div>
   );
 }
