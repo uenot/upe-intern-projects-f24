@@ -10,4 +10,3 @@ class Qs {
 }
 
 export default Qs;
-

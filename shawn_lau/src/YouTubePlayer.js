@@ -1,7 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Question from './Question';
 
-function YouTubePlayer({videoId, stopTimes}) { 
+function YouTubePlayer({VideoQuiz}) { 
+
+  //gather info from quiz object
+  const videoId = VideoQuiz.videoId;
+  const questions = VideoQuiz.questions;
+  const stopTimes = [];
+  questions.forEach(function(item) {
+    stopTimes.push(item.time);
+  });
+
   const playerRef = useRef(null);
   const [volume, setVolume] = useState(50);
   const [currentTime, setCurrentTime] = useState(0);
@@ -76,6 +85,8 @@ function YouTubePlayer({videoId, stopTimes}) {
         console.log(`Stopping at ${targetTime} seconds`);
         stopVideo(); 
         setShowQuestion(true);
+        console.log('STOPPED!!');
+        stopTimes.shift();
       }
     });
   };
@@ -86,6 +97,12 @@ function YouTubePlayer({videoId, stopTimes}) {
     } else if (event.data === window.YT.PlayerState.PAUSED) {
       console.log('Video is paused');
     }
+  };
+
+  const nextButton = () => {
+    setShowQuestion(false);
+    startVideo();
+    console.log("started?");
   };
 
   return (
@@ -105,11 +122,11 @@ function YouTubePlayer({videoId, stopTimes}) {
       {showQuestion && (
         <div>
           <Question
-            ques={"what the duck say!"}
-            opt={["op1", "op2", "op3", "op4"]}
-            ans={"op2"}
+            ques={questions[0].ques}
+            opt={questions[0].options}
+            ans={questions[0].ans}
           />
-          <button onClick={() => setShowQuestion(false)}>Close Question</button>
+          <button onClick={nextButton}>Close Question</button>
         </div>
       )}
 

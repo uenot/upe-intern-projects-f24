@@ -1,10 +1,10 @@
 
 class VideoQuiz {
-    constructor(id, start, stop, questions) {
-        this.id = id;
-        this.start = start,
-        this.stop = stop,        
-        this.questions = questions; // Array of Question objects
+    constructor(videoId, questions) {
+        this.videoId = videoId;
+        //this.start = start, add later maybe
+        //this.stop = stop,        
+        this.questions = questions; //array of Question objects
     }
 }
 
