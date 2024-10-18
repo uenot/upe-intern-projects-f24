@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import './Question.css'; 
 
-function Question({ ques, opt, ans }) {
+function Question({ ques, opt, ans, onCorrectAnswer, onWrongAnswer}) {
 
     const [selectedOption, setSelectedOption] = useState(null); // To track selected option
     const [isCorrect, setIsCorrect] = useState(null); // To track if answer is correct
+    const [isAnswered, setIsAnswered] = useState(false); // Track if the question is answered
 
     const handleOptionClick = (option) => {
-        setSelectedOption(option); // Set the selected option
-        setIsCorrect(option === ans); // Check if it's the correct answer
+        if (!isAnswered) {
+            setSelectedOption(option); // Set the selected option
+            setIsCorrect(option === ans); // Check if it's the correct answer
+            setIsAnswered(true); // Mark the question as answered
+
+            if(option === ans) {
+                onCorrectAnswer();
+            }
+            else {
+                onWrongAnswer();
+            }
+        }
     };
 
     return (
@@ -18,8 +29,9 @@ function Question({ ques, opt, ans }) {
                 {opt.map((option, index) => (
                     <li key={index} className="option-item">
                         <button 
-                            className={`option-button ${selectedOption === option ? 'selected' : ''}`}
+                            className={`option-button ${selectedOption === option ? 'selected' : ''} ${isAnswered ? 'disabled' : ''}`}
                             onClick={() => handleOptionClick(option)} // Handle button click
+                            disabled={isAnswered} // Disable button after the question is answered
                         >
                             {option}
                         </button>

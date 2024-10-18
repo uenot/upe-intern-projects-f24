@@ -1,5 +1,3 @@
-/* Question.css */
-
 .question-container {
     border: 2px solid #007BFF; /* Blue border */
     border-radius: 8px; /* Rounded corners */
@@ -33,10 +31,31 @@
     border-radius: 4px; /* Slightly rounded corners */
     padding: 8px; /* Padding inside each option */
     margin-bottom: 8px; /* Space between options */
-    transition: background-color 0.3s; /* Smooth background transition */
+    transition: background-color 0.3s, color 0.3s; /* Smooth background and text color transition */
 }
 
 .option-item:hover {
     background-color: #007BFF; /* Change background color on hover */
     color: white; /* Change text color on hover */
+}
+
+/* Styling for selected option */
+.option-button.selected {
+    background-color: #007BFF; /* Keep blue background for selected option */
+    color: white; /* White text for selected option */
+}
+
+/* Styling for disabled buttons after question is answered */
+.option-button.disabled {
+    background-color: #6C757D; /* Greyed-out background */
+    color: white; /* White text */
+    cursor: not-allowed; /* Change cursor to indicate the button is disabled */
+}
+
+.answer-result {
+    font-size: 1.2em; /* Slightly larger text for the result */
+    font-weight: bold; /* Bold text for emphasis */
+    color: #495057; /* Dark grey for text */
+    margin-top: 16px; /* Space above the result text */
+    text-align: center; /* Center align the result text */
 }

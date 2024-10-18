@@ -16,7 +16,10 @@ function YouTubePlayer({VideoQuiz}) {
   const [currentTime, setCurrentTime] = useState(0);
   
   //question states
-  const [showQuestion, setShowQuestion] = useState(false); 
+  const [showQuestion, setShowQuestion] = useState(false);
+  const [index, setIndex] = useState(0); // Manage index as state
+  const [correctAnswers, setCorrectAnswers] = useState(0); // correct
+  const [next, setNext] = useState("Skip") // next button
 
   useEffect(() => {
 
@@ -103,6 +106,27 @@ function YouTubePlayer({VideoQuiz}) {
     setShowQuestion(false);
     startVideo();
     console.log("started?");
+    setIndex((prevIndex) => prevIndex + 1);
+    console.log(index);
+    console.log(questions[index]);
+  };
+
+  const handleNext = (corr) => {
+    if(corr) {
+      setNext("Hooray! Carry on!");
+    }
+    else {
+      setNext("Aww. Next one!");
+    }
+  }
+
+  const handleCorrectAnswer = () => {
+    setCorrectAnswers(prev => prev + 1);
+    handleNext(true);
+  }
+
+  const handleWrongAnswer = () => {
+    handleNext(false); 
   };
 
   return (
@@ -110,6 +134,7 @@ function YouTubePlayer({VideoQuiz}) {
       <div id="player"></div>
       <button onClick={startVideo}>Start</button>
       <button onClick={stopVideo}>Stop</button>
+      
       <input
         type="range"
         min="0"
@@ -117,16 +142,22 @@ function YouTubePlayer({VideoQuiz}) {
         value={volume}
         onChange={handleVolumeChange}
       />
+      
       <p>Current Time: {Math.floor(currentTime)} seconds</p>
-
+      <div>
+        <p> SCORE {correctAnswers}/{stopTimes.length} </p>  
+        
+      </div>
       {showQuestion && (
         <div>
           <Question
-            ques={questions[0].ques}
-            opt={questions[0].options}
-            ans={questions[0].ans}
+            ques={questions[index].ques}
+            opt={questions[index].options}
+            ans={questions[index].ans}
+            onCorrectAnswer={handleCorrectAnswer}
+            onWrongAnswer={handleWrongAnswer}
           />
-          <button onClick={nextButton}>Close Question</button>
+          <button onClick={nextButton}>{next}</button>
         </div>
       )}
 
