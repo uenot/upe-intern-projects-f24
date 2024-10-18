@@ -1,1 +1,0 @@
-Hello!! This is the folder for Shawn's intern project!

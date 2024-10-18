@@ -21,9 +21,9 @@ function YouTubePlayer() {
   
   //question states
   const [showQuestion, setShowQuestion] = useState(false);
-  const [index, setIndex] = useState(0); // Manage index as state
-  const [correctAnswers, setCorrectAnswers] = useState(0); // correct
-  const [next, setNext] = useState("Skip") // next button
+  const [index, setIndex] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [next, setNext] = useState("Skip") 
 
   useEffect(() => {
 
@@ -48,7 +48,7 @@ function YouTubePlayer() {
           'iv_load_policy': 3
         },
         events: {
-          'onStateChange': onPlayerStateChange // Track video state changes
+          'onStateChange': onPlayerStateChange 
         }
       });
     };
@@ -59,9 +59,9 @@ function YouTubePlayer() {
         setCurrentTime(time);
         checkForTargetPoints(time);
       }
-    }, 300); // Check every second
+    }, 300); 
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    return () => clearInterval(intervalId); 
   }, []);
 
   const startVideo = () => {

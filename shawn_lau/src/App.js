@@ -23,10 +23,7 @@ function Home() {
 }
 
 function App() {
-  const question1 = new Qs(2, "What the duck doing!", ["Walking", "Talking", "Eating", "Sleeping"], "Walking");
-  const question2 = new Qs(4, "What the duck color", ["Yellow", "Purple", "Green", "Orange"], "Yellow");
-  const quizzy = new VideoQuiz('MtN1YnoL46Q', [question1, question2]);
-
+  
   return (
     <Router>
       <Routes>

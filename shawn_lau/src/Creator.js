@@ -84,19 +84,17 @@ function Creator() {
   };
 
   const handlePublish = () => {
-    const sortedQuestions = [...questions].sort((a, b) => a.time - b.time); // Sort questions by time
-    const videoId = videoUrl.split('v=')[1] || videoUrl; // Extract video ID
-    const videoQuiz = new VideoQuiz(videoId, sortedQuestions, quizName); // Pass quiz name to VideoQuiz
+    const sortedQuestions = [...questions].sort((a, b) => a.time - b.time); 
+    const videoId = videoUrl.split('v=')[1] || videoUrl; 
+    const videoQuiz = new VideoQuiz(videoId, sortedQuestions, quizName); 
 
-    // Store video quiz in session storage
     const quizzes = JSON.parse(sessionStorage.getItem('videoQuizzes')) || [];
     quizzes.push(videoQuiz);
     sessionStorage.setItem('videoQuizzes', JSON.stringify(quizzes));
 
-    alert('Video quiz published successfully!'); // Notification for user
+    alert('Video quiz published successfully!'); 
 
-    // Navigate back to the homepage
-    navigate('/'); // Navigate to the home page
+    navigate('/'); 
   };
 
   return (

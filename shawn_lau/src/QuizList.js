@@ -13,7 +13,7 @@ function QuizList() {
 
   const handleQuizClick = (quiz) => {
     // Navigate to the YouTubePlayer page and pass the selected quiz
-    navigate('/youtube-player', { state: { VideoQuiz: quiz } }); // Make sure to pass `VideoQuiz`
+    navigate('/youtube-player', { state: { VideoQuiz: quiz } }); 
     window.location.reload(); 
   };
 
@@ -24,7 +24,7 @@ function QuizList() {
       <div style={styles.grid}>
         {quizzes.map((quiz, index) => (
           <button key={index} style={styles.button} onClick={() => handleQuizClick(quiz)}>
-            {quiz.quizName} {/* Display quiz name */}
+            {quiz.quizName} 
           </button>
         ))}
       </div>
