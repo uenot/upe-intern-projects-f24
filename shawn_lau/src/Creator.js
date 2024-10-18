@@ -2,17 +2,19 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Qs from './Qs';
 import VideoQuiz from './VideoQuiz';
+import './Creator.css';
 
 function Creator() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { videoUrl } = location.state || {}; // Get video URL from location state
-  const playerRef = useRef(null);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [questions, setQuestions] = useState([]); // Store Q notes
-  const [question, setQuestion] = useState('');
-  const [options, setOptions] = useState(['', '', '']);
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { videoUrl } = location.state || {}; // Get video URL from location state
+    const playerRef = useRef(null);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [questions, setQuestions] = useState([]); // Store Q notes
+    const [question, setQuestion] = useState('');
+    const [options, setOptions] = useState(['', '', '']);
+    const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
+    const [quizName, setQuizName] = useState(''); // State for quiz name
 
   useEffect(() => {
     const tag = document.createElement('script');
@@ -84,7 +86,7 @@ function Creator() {
   const handlePublish = () => {
     const sortedQuestions = [...questions].sort((a, b) => a.time - b.time); // Sort questions by time
     const videoId = videoUrl.split('v=')[1] || videoUrl; // Extract video ID
-    const videoQuiz = new VideoQuiz(videoId, sortedQuestions);
+    const videoQuiz = new VideoQuiz(videoId, sortedQuestions, quizName); // Pass quiz name to VideoQuiz
 
     // Store video quiz in session storage
     const quizzes = JSON.parse(sessionStorage.getItem('videoQuizzes')) || [];
@@ -99,59 +101,73 @@ function Creator() {
 
   return (
     <div>
-      <button onClick={() => navigate('/')}>Back</button>
-      <h1>Creator Page</h1>
-      <div id="youtube-player"></div>
-      <h2>Current Time: {formatTime(currentTime)}</h2>
-      
-      <h3>Create Q Note</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Question:</label>
-          <input
-            type="text"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            required
-          />
-        </div>
-        {options.map((option, index) => (
-          <div key={index}>
-            <label>
-              Option {index + 1}:
-              <input
-                type="text"
-                value={option}
-                onChange={(e) => handleOptionChange(index, e.target.value)}
-                required
-              />
-            </label>
-            <label style={{ marginLeft: '10px' }}>
-              <input
-                type="radio"
-                name="correct-answer"
-                checked={correctAnswerIndex === index}
-                onChange={() => setCorrectAnswerIndex(index)}
-              />
-              Correct Answer
-            </label>
-          </div>
-        ))}
-        <button type="submit">Create Q Note</button>
-      </form>
+    <button onClick={() => navigate('/')}>Back</button>
+    <h1>Creator Page</h1>
+    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+        <div id="youtube-player"></div>
+        <h2>Current Time: {formatTime(currentTime)}</h2>
+        <div className="right-align" style={{ marginLeft: '20px' }}>
+            <h3>Create Q Note</h3>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Question:</label>
+                    <input
+                        type="text"
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        required
+                    />
+                </div>
+                {options.map((option, index) => (
+                    <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                        <label style={{ marginRight: '10px' }}>
+                            Option {index + 1}:
+                            <input
+                                type="text"
+                                value={option}
+                                onChange={(e) => handleOptionChange(index, e.target.value)}
+                                required
+                                style={{ marginLeft: '5px' }}
+                            />
+                        </label>
+                        <label style={{ marginLeft: '10px' }}>
+                            <input
+                                type="radio"
+                                name="correct-answer"
+                                checked={correctAnswerIndex === index}
+                                onChange={() => setCorrectAnswerIndex(index)}
+                            />
+                            Correct Answer
+                        </label>
+                    </div>
+                ))}
+                
+                <button type="submit">Create Q Note</button>
+            </form>
 
-      <h3>Created Questions:</h3>
-      <ul>
-        {questions.map((q, index) => (
-          <li key={index}>
-            {formatTime(q.time)} - {q.ques} (Correct Answer: {q.ans})
-          </li>
-        ))}
-      </ul>
-      
-      <button onClick={handlePublish}>Publish Video Quiz</button>
+            <h3>Quiz Name:</h3>
+            <input 
+                type="text" 
+                value={quizName} 
+                onChange={(e) => setQuizName(e.target.value)} 
+                required 
+            />
+
+            <h3>Created Questions:</h3>
+            <ul>
+                {questions.map((q, index) => (
+                    <li key={index}>
+                        {formatTime(q.time)} - {q.ques} (Correct Answer: {q.ans})
+                    </li>
+                ))}
+            </ul>
+            
+            <button onClick={handlePublish}>Publish Video Quiz</button>
+            </div>
+        </div>
     </div>
   );
+    
 }
 
 export default Creator;

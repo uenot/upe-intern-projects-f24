@@ -85,8 +85,7 @@ function YouTubePlayer() {
     }
   };
 
-  const TOLERANCE = 0.2; // Allowable deviation in seconds
-
+  const TOLERANCE = 0.2;
   const checkForTargetPoints = (time) => {
       stopTimes.forEach((targetTime) => {
           

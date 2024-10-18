@@ -1,0 +1,5 @@
+.right-align {
+    float: right;
+    max-width: 300px; /* Adjust width as needed */
+    margin-left: 20px;
+}
