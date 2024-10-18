@@ -24,6 +24,7 @@ function Question({ ques, opt, ans, onCorrectAnswer, onWrongAnswer}) {
 
     return (
         <div className="question-container">
+            
             <p className="question-text">{ques}</p>
             <ul className="option-list">
                 {opt.map((option, index) => (

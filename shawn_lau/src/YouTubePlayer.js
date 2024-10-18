@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Question from './Question';
 
-function YouTubePlayer({VideoQuiz}) { 
-
-  //gather info from quiz object
-  const videoId = VideoQuiz.videoId;
-  const questions = VideoQuiz.questions;
+function YouTubePlayer() { 
+  const navigate = useNavigate(); 
+  
+  const location = useLocation();
+  const { VideoQuiz } = location.state || {}; // Get the quiz data from state
+  const videoId = VideoQuiz.videoId; // Access videoId from the quiz
+  const questions = VideoQuiz.questions; // Access questions from the quiz
   const stopTimes = [];
   questions.forEach(function(item) {
     stopTimes.push(item.time);
   });
+  console.log(stopTimes);
 
   const playerRef = useRef(null);
   const [volume, setVolume] = useState(50);
@@ -55,7 +59,7 @@ function YouTubePlayer({VideoQuiz}) {
         setCurrentTime(time);
         checkForTargetPoints(time);
       }
-    }, 1000); // Check every second
+    }, 300); // Check every second
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
@@ -81,17 +85,19 @@ function YouTubePlayer({VideoQuiz}) {
     }
   };
 
+  const TOLERANCE = 0.2; // Allowable deviation in seconds
+
   const checkForTargetPoints = (time) => {
-    // Iterate through stopTimes array and check if we should stop
-    stopTimes.forEach((targetTime) => {
-      if (Math.floor(time) === targetTime) {
-        console.log(`Stopping at ${targetTime} seconds`);
-        stopVideo(); 
-        setShowQuestion(true);
-        console.log('STOPPED!!');
-        stopTimes.shift();
-      }
-    });
+      stopTimes.forEach((targetTime) => {
+          
+          if (time >= targetTime - TOLERANCE && time <= targetTime + TOLERANCE) {
+              console.log(`Stopping at ${targetTime} seconds`);
+              stopVideo(); 
+              setShowQuestion(true);
+              console.log('STOPPED!!');
+              stopTimes.shift();
+          }
+      });
   };
 
   const onPlayerStateChange = (event) => {
@@ -131,6 +137,7 @@ function YouTubePlayer({VideoQuiz}) {
 
   return (
     <div>
+      <button onClick={() => navigate('/')}>Back</button>
       <div id="player"></div>
       <button onClick={startVideo}>Start</button>
       <button onClick={stopVideo}>Stop</button>
