@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nina Pappas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel ="stylesheet" href = "style.css">
+</head>
+<body>
+
+    <div id="navbar">
+        <a href="#default" id="name">Nina Pappas</a>
+        <div id="navbar-right">
+            <a class="active" href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="experience.html">Experience</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+
+    <div style="margin-top:210px;padding:15px 15px 2500px;font-size:30px" class="home">
+        <div class="buttons">
+            <a href="https://github.com/settings/profile"><img src="git.png" alt="git-button" style="float:left"></a>
+            <a href="https://www.linkedin.com/in/nina-pappas-620753267/"><img src="ldn.png" alt="linkedn" style="float:left"></a>
+        </div>
+        <img src="profile.jpeg" alt="profile">
+        <h4>Hi! I am a current freshman at Boston University studying CS, math, and econ</h4> 
+        <h5>I am interested in AI/Machine learning and its intersection with financial services</h5>
+    </div>
+    
+<script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("navbar").style.padding = "30px 10px";
+    document.getElementById("logo").style.fontSize = "25px";
+} else {
+    document.getElementById("navbar").style.padding = "80px 10px";
+    document.getElementById("logo").style.fontSize = "35px";
+}
+}
+</script>
+
+</body>
+</html>
