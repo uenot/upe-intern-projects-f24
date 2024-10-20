@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel ="stylesheet" href = "style.css">
+</head>
+<body>
+
+    <div id="navbar">
+        <a href="#default" id="name">Nina Pappas</a>
+        <div id="navbar-right">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a class ="active" href="experience.html">Experience</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <section class="exp" style="margin-top:210px;padding:15px 15px 2500px;font-size:30px">
+        <h3>Projects</h3>
+                <img src="econ.jpg" alt="coin">
+
+        <h4>Bank Sheet</h4>
+        <p><em>Inspired by my AP Econ class</em></p>
+        <ul>
+            <li>Developed a program in Java to store assets and liabilities on a bank sheet as well as customer information</li>
+            <li>Includes methods for deposits and withdrawals that accounts for the customers personal balance and the bank’s
+                loanable funds, required/excess reserves, and money owed to customers</li>
+        </ul>
+
+        <h4>Neural Network</h4>
+        <img src="brain.webp" alt="brain">
+        <p><em>In progress</em></p>
+        <ul>
+            <li>Worked with BU AI Club to create a neural network in Java to solve the exclusive or function</li>
+        </ul>
+
+        <h3 style="margin-top: 155px; margin-left:200px">Leadership</h3>
+        <h5>Teacher</h5>
+        <img src="robot.png" alt="robot">
+        <p style="font-size:20px"><em>SheCanSTEM</em></p>
+        <ul>
+            <li>Co-created, taught, organized a course for elementary school girls</li>
+            <li>Planned full course curriculum</li>
+            <li>Covered block coding, physics, Mindstorm robotics, and chemistry</li>
+        </ul>
+        <p style="font-size:20px"><em>Lego Robotics</em></p>
+        <ul>
+            <li>Taught simple robotic systems and block coding to middle school students</li>
+        </ul>
+        <h4 style="text-align:center; margin-left:255px">Courses and outreach activities won 4+ FIRST awards</h4>
+    </section>
+
+
+<script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("navbar").style.padding = "30px 10px";
+    document.getElementById("logo").style.fontSize = "25px";
+} else {
+    document.getElementById("navbar").style.padding = "80px 10px";
+    document.getElementById("logo").style.fontSize = "35px";
+}
+}
+</script>
+
+</body>
+</html>

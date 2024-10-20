@@ -1,0 +1,145 @@
+* {box-sizing: border-box;}
+
+body { 
+    margin: 0;
+}
+
+#navbar {
+    overflow: hidden;
+    background-color:  #b3d9ff;    
+    padding: 90px 10px;
+    transition: 0.4s; 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 99; 
+}
+
+#navbar a {
+    float: left;
+    color: white; 
+    text-align: center;
+    padding: 12px; 
+    text-decoration: none; 
+    font-size: 19px;
+    line-height: 25px;
+    border-radius: 4px; 
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#navbar #name{ 
+    font-size: 35px; 
+    transition: 0.4s; 
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#navbar a:hover{
+    background-color: #66b3ff; 
+}
+
+#navbar a.active {
+    background-color: #66b3ff; 
+    color: white;
+}
+
+#navbar-right {
+    float: right; 
+}
+
+@media screen and (max-width: 580px) {
+    #nav {
+        padding: 20px 10px !important;
+    }
+
+    #nav a {
+        float: none; 
+        display: block; 
+        text-align: left;
+    }
+
+    #nav-right {
+        float: none; 
+    }
+}
+
+.home{
+    p{
+        margin-right: 800px;
+        float: right;
+        margin-left: 200px;
+        font-family: 'Times New Roman', Times, serif;
+    } 
+    h4{
+        margin-left: 350px;
+        margin-right: 750px;
+        margin-top: 100px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    h5{
+    margin-left: 350px;
+        margin-right: 800px;
+        margin-top: 50px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    img{
+        height: 400px;
+        width: 350px;
+        float: right;
+    }
+}
+
+.buttons{
+    img{
+        height: 50px;
+        width: 50px;
+        float: right;
+    }
+}
+
+.about{
+    p{
+        margin-right: 500px;
+    }
+    img{
+        width: 1480px;
+        height:400px;
+    }
+}
+
+.exp{
+    h3{
+        text-align: center;
+    }
+    p{
+        font-size: 30px
+
+    }
+    li{
+        font-size: 20px;
+    }
+    img{
+        width: 300px;
+        float: right;
+    }
+    ul{
+        margin-right: 900px;
+        
+    }
+}
+
+
+.formst{
+    margin-right:700px;
+    margin-top: 50px;
+    float:left;
+}
+
+.email{
+    img{
+        width:400px;
+        float:right;
+    }
+}
+
+
